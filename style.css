@@ -1,0 +1,195 @@
+/* ---------------------------------------------------------------
+   Peter Antich — personal site
+   One stylesheet for every page. Edit colors and sizes here only.
+   --------------------------------------------------------------- */
+
+:root {
+  --paper:      #FCFBF8;  /* page background */
+  --ink:        #1B2127;  /* body text */
+  --ink-soft:   #5A626A;  /* years, dates, secondary text */
+  --rule:       #DCD8CF;  /* hairlines */
+  --accent:     #3A5A50;  /* links */
+  --accent-dk:  #21382F;  /* links, hovered */
+  --measure:    34rem;    /* reading width */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.62;
+  font-feature-settings: "onum" 1;   /* old-style figures where available */
+}
+
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* --- masthead + navigation ------------------------------------ */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3.25rem;
+}
+
+.masthead a.wordmark {
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  font-variant: small-caps;
+  letter-spacing: 0.045em;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+nav a:hover,
+nav a:focus-visible { color: var(--accent-dk); border-bottom-color: var(--accent); }
+
+nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* --- the opening claim (home page only) ------------------------ */
+
+.claim {
+  font-size: clamp(1.6rem, 4.6vw, 2.45rem);
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  max-width: 22ch;
+  margin: 0 0 2.25rem;
+  text-wrap: balance;
+}
+
+.standfirst {
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin-bottom: 3rem;
+}
+
+/* --- headings and text ----------------------------------------- */
+
+h1 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 2.25rem;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.32rem;
+  font-weight: 600;
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+h3 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  font-style: italic;
+  margin: 2rem 0 0.6rem;
+}
+
+p { max-width: var(--measure); margin: 0 0 1.15rem; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover, a:focus-visible { color: var(--accent-dk); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+em, cite { font-style: italic; }
+cite { font-style: italic; }
+
+/* --- dated lists: publications, talks, appointments ------------ */
+
+dl.dated { margin: 0; }
+
+dl.dated dt {
+  float: left;
+  clear: left;
+  width: 5.5rem;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  padding-top: 0.12rem;
+}
+
+dl.dated dd {
+  margin: 0 0 0.85rem 5.5rem;
+  max-width: calc(var(--measure) + 4rem);
+}
+
+/* --- the two books, given room --------------------------------- */
+
+.book {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--accent);
+  margin: 0 0 1.9rem;
+  max-width: var(--measure);
+}
+
+.book .title { font-style: italic; }
+.book .imprint { display: block; color: var(--ink-soft); font-size: 0.98rem; }
+
+/* --- plain lists (courses, service) ---------------------------- */
+
+ul.plain { list-style: none; padding: 0; margin: 0 0 1.2rem; max-width: var(--measure); }
+ul.plain li { margin-bottom: 0.35rem; }
+ul.plain .when { color: var(--ink-soft); font-size: 0.98rem; }
+
+/* --- footer ---------------------------------------------------- */
+
+footer {
+  margin-top: 4.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+footer p { margin-bottom: 0.4rem; }
+
+/* --- narrow screens -------------------------------------------- */
+
+@media (max-width: 33rem) {
+  body { font-size: 1.06rem; }
+  .page { padding: 2rem 1.15rem 3.5rem; }
+  .masthead { margin-bottom: 2.5rem; }
+  dl.dated dt { float: none; width: auto; padding-top: 0; }
+  dl.dated dd { margin-left: 0; margin-bottom: 1.15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
