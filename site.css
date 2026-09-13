@@ -1,0 +1,199 @@
+/* Peter Antich — site layer on top of the Classical design system (styles.css).
+   All colors, fonts, radii and shadows come from the system's variables. */
+
+body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+
+a {
+  color: var(--color-accent-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-accent-300);
+}
+a:hover { color: var(--color-accent-900); text-decoration-color: var(--color-accent-600); }
+::selection { background: var(--color-accent-200); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+/* --- masthead ------------------------------------------------- */
+
+.site-head {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-divider);
+}
+.site-head .wrap {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px;
+}
+.wordmark {
+  font-family: var(--font-heading); font-size: 19px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-text); text-decoration: none;
+}
+.wordmark:hover { color: var(--color-text); }
+.site-nav { display: flex; gap: 28px; align-items: baseline; }
+.site-nav a {
+  font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-neutral-700); text-decoration: none; padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+}
+.site-nav a:hover { color: var(--color-accent-700); }
+.site-nav a[aria-current="page"] { color: var(--color-text); border-bottom-color: var(--color-accent); }
+
+main.wrap { padding-bottom: 120px; }
+
+/* --- type ------------------------------------------------------ */
+
+.kicker {
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-accent-700); margin: 0 0 28px; font-feature-settings: "tnum" 1;
+}
+.display {
+  font-family: var(--font-heading); font-weight: 400;
+  font-size: clamp(40px, 6.2vw, 86px); line-height: 1.0;
+  letter-spacing: -0.022em; margin: 0; text-wrap: balance;
+}
+.display em { font-style: italic; color: var(--color-accent-700); }
+.page-title {
+  font-family: var(--font-heading); font-weight: 400;
+  font-size: clamp(44px, 7vw, 96px); line-height: 0.95;
+  letter-spacing: -0.025em; margin: 0;
+}
+.section-head {
+  font-family: var(--font-heading); font-weight: 600; font-size: 13px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-neutral-700); margin: 0 0 24px;
+}
+.section-head.ruled { border-top: 1px solid var(--color-divider); padding-top: 24px; }
+.big-head {
+  font-family: var(--font-heading); font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 46px); letter-spacing: -0.02em; margin: 0 0 40px;
+}
+.prose { font-size: 16px; line-height: 1.72; text-align: justify; hyphens: auto; margin: 0; }
+.prose-lg { font-size: 17px; }
+.hr { height: 1px; background: var(--color-divider); border: 0; margin: 0; }
+
+/* --- layout blocks --------------------------------------------- */
+
+.hero { display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-end; padding: 72px 0 40px; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.hero-text .sub { margin: 32px 0 0; font-size: 17px; line-height: 1.5; color: var(--color-neutral-700); }
+.hero-figure { margin: 0; flex: 0 1 260px; min-width: 200px; }
+.hero-figure img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
+
+.page-head {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px 72px; align-items: end; padding: 72px 0 40px;
+}
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 72px; align-items: start; }
+.cols-tight { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 56px; }
+section + section { margin-top: 72px; }
+.section-pad { padding-top: 56px; }
+
+/* --- in-progress / dated entries -------------------------------- */
+
+.entries { display: grid; gap: 18px; }
+.entry {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px;
+  padding-bottom: 18px; border-bottom: 1px solid var(--color-divider);
+}
+.entry:last-child { border-bottom: 0; padding-bottom: 0; }
+.entry .label, .dated .year {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-accent-700); padding-top: 4px;
+}
+.entry p { margin: 0; font-size: 15.5px; line-height: 1.62; }
+
+.dated {
+  display: grid; grid-template-columns: 120px minmax(0, 1fr);
+  gap: 20px 32px; max-width: 78ch; margin: 0;
+}
+.dated .year {
+  font-size: 13.5px; letter-spacing: 0.1em; text-transform: none;
+  padding-top: 5px; font-feature-settings: "tnum" 1;
+}
+.dated dt, .dated dd { margin: 0; }
+.dated p { margin: 0; font-size: 16px; line-height: 1.62; }
+.dated .meta { font-size: 14px; }
+
+/* --- books ------------------------------------------------------ */
+
+.shelf { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 64px; }
+.stack { display: grid; gap: 48px; }
+.book { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 28px; align-items: start; }
+.book.wide { grid-template-columns: 170px minmax(0, 1fr); gap: 36px; }
+.book img {
+  display: block; width: 100%; height: auto;
+  box-shadow: var(--shadow-md); border-radius: var(--radius-sm);
+}
+.book .cover { display: block; text-decoration: none; }
+.book h3 {
+  font-family: var(--font-heading); font-weight: 400; font-style: italic;
+  font-size: 26px; line-height: 1.15; margin: 0 0 10px;
+}
+.book .imprint { margin: 0 0 14px; font-size: 13.5px; letter-spacing: 0.06em; color: var(--color-neutral-700); }
+.book .links { margin: 0 0 6px; font-size: 14px; line-height: 1.6; }
+.book .reviews { margin: 0; font-size: 14px; color: var(--color-neutral-700); }
+
+/* --- courses ---------------------------------------------------- */
+
+.courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 56px; }
+.courses h2 {
+  font-family: var(--font-heading); font-weight: 400; font-size: 24px; line-height: 1.2;
+  margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--color-accent-400);
+}
+.courses ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; font-size: 15px; line-height: 1.45; }
+
+/* --- bits ------------------------------------------------------- */
+
+.btn-outline {
+  display: inline-block; padding: 10px 22px;
+  border: 1px solid var(--color-accent); border-radius: var(--radius-md);
+  text-decoration: none; color: var(--color-accent-700);
+  font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.btn-outline:hover { background: var(--color-accent-100); color: var(--color-accent-900); }
+
+.mail { margin: 0 0 10px; font-size: 22px; font-family: var(--font-heading); }
+.address { margin: 0; font-size: 15px; line-height: 1.65; color: var(--color-neutral-700); }
+.elsewhere { margin: 0; font-size: 15px; line-height: 2; }
+.note {
+  margin: 72px 0 0; padding-top: 24px; border-top: 1px solid var(--color-divider);
+  font-size: 15px; color: var(--color-neutral-700);
+}
+
+.site-foot { border-top: 1px solid var(--color-divider); }
+.site-foot .wrap {
+  display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  padding-top: 24px; padding-bottom: 40px;
+  font-size: 13px; letter-spacing: 0.08em; color: var(--color-neutral-600);
+}
+
+/* --- on-scroll reveal ------------------------------------------- */
+
+/* Visible by default; site.js arms the animation only once it knows it works. */
+.reveal.armed { opacity: 0; transform: translateY(16px); }
+.reveal.armed.in {
+  opacity: 1; transform: none;
+  transition: opacity 700ms cubic-bezier(.22,.61,.36,1), transform 700ms cubic-bezier(.22,.61,.36,1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.armed { opacity: 1; transform: none; }
+  .reveal.armed.in { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+  .hero { padding-top: 48px; gap: 36px; }
+  .entry, .dated { grid-template-columns: 1fr; gap: 6px; }
+  .dated { gap: 4px; }
+  .dated p { margin-bottom: 14px; }
+  .book, .book.wide { grid-template-columns: 120px minmax(0, 1fr); gap: 20px; }
+  .site-head .wrap { padding-top: 12px; padding-bottom: 12px; }
+  .site-nav { gap: 18px; }
+}
